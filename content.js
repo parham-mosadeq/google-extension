@@ -1,8 +1,25 @@
-import { obj } from "./constants";
-import { extractNumber, createElement } from "./utils";
-
 let convertBtn = null;
 let isShown = false;
+
+const obj = {
+  inches: 2.54,
+  ppi: 96,
+  meters: 100,
+};
+
+const extractNumber = (text) => {
+  if (typeof text === "string") {
+    return text.match(/\d+/g);
+  }
+};
+
+const createElement = ({ element, id, text }) => {
+  const newElement = document.createElement(element);
+  newElement.id = id;
+  newElement.innerText = text;
+
+  return newElement;
+};
 
 const calcNumber = ({ currentNumber, type = "inches" }) => {
   const key = obj[type];
@@ -26,7 +43,7 @@ const createPopup = (event, selectedNumber) => {
   const btn = createElement({
     element: "button",
     id: "convertButton",
-    text: `convert from ${obj.inches}`,
+    text: `convert from ${"inches"}`,
   });
   btn.style =
     "display:block; border-radius:10px; border:1px solid lightgray; background:white; color:black;";
